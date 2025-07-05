@@ -4,11 +4,17 @@ FROM openjdk:17-jdk-slim
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the Maven project files to the container
-# This allows Maven to download dependencies before copying the full source code,
-# which can improve build cache efficiency.
+# Copy the Maven wrapper files first
+# This ensures the mvnw script and its dependencies are available
+COPY .mvn .mvn
+COPY mvnw .
 COPY pom.xml .
+
+# Copy the source code
 COPY src ./src
+
+# Make the Maven wrapper script executable
+RUN chmod +x ./mvnw
 
 # Build the Spring Boot application using Maven
 # The -DskipTests flag skips running tests during the build
