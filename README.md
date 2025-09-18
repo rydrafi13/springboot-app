@@ -3,10 +3,10 @@
 ## How To Build and Run
 Build the Docker Image
 ```
-docker build -t kubenesia-springboot-app .
+docker build -t springboot-app .
 ```
 
 Run the Docker Container
 ```
-docker run -p 8080:8080 kubenesia-springboot-app
+docker run -p 8080:8080 springboot-app
 ```
